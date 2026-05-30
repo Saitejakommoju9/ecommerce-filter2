@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Products from "./products";
+import Products from "./Products";
 import Categories from "./Categories";
 
 const Body = () => {

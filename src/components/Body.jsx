@@ -6,6 +6,7 @@ const Body = () => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const[width,setWidth]=useState(window.innerWidth);
 
   useEffect(() => {
     fetchData();
@@ -29,16 +30,37 @@ const Body = () => {
     setFilteredProducts(data.products);
   };
 
+  useEffect(()=>{
+    //console.log(window.innerWidth);
+    const handleWidthChange=()=>{
+      setWidth(window.innerWidth);
+    }
+    window.addEventListener("resize",handleWidthChange);
+
+    return ()=>{
+      window.removeEventListener("resize",handleWidthChange);
+    }
+  },[window.innerWidth]);
+
   return (
     <div className="flex">
-      <div className="fixed top-15 left-0 w-24 md:w-40 bg-gray-200 h-full overflow-y-auto">
+      
+      <div className="fixed hidden sm:block top-15 left-0 w-24 md:w-40 bg-gray-200 h-full overflow-y-auto">
         <Categories
           selectedCategories={selectedCategories}
           setSelectedCategories={setSelectedCategories}
         />
       </div>
 
-      <div className="my-8 ml-15  md:ml-64 flex mt-10 flex-2 flex-wrap md:flex-wrap justify-center bg-white ">
+      <div className="fixed sm:hidden block top-18 left-11">
+        <Categories
+          selectedCategories={selectedCategories}
+          setSelectedCategories={setSelectedCategories}
+        />
+      </div>
+    
+
+      <div className="my-8  sm:ml-15  md:ml-64 flex mt-25 sm:mt-10 flex-2 flex-wrap md:flex-wrap justify-center bg-white ">
         {filteredProducts.map((prod) => (
           <Products key={prod.id} Pdata={prod} />
         ))}

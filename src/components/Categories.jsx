@@ -5,7 +5,7 @@ const Categories = ({ selectedCategories, setSelectedCategories }) => {
   const[width,setWidth]=useState(window.innerWidth);
   const[dropDown,setDropdown]=useState(false);
 
-  const categories=["beauty", "fragrances", "furniture"];
+  const categories=["beauty", "fragrances", "furniture","groceries"];
   const handleChange = (category) => {
     if (selectedCategories.includes(category)) {
       setSelectedCategories(
@@ -32,12 +32,12 @@ const Categories = ({ selectedCategories, setSelectedCategories }) => {
     }
   },[window.innerWidth]);
 
-  console.log(innerWidth);
+ 
 
   return (
     width<640 ?( 
     <div className="cursor-pointer ">
-      <button onClick={handleButton} className="text-white  bg-black border  rounded-md p-1 font-bold text-lg">Filters⧩</button>
+      <button onClick={handleButton} className="text-white opacity-70  bg-black border  rounded-md p-1 font-bold text-lg">Filters⧩</button>
       {dropDown &&
       <div className="flex flex-col bg-black opacity-60 text-white p-2 rounded-sm -ml-2 font-bold">
         {categories.map((category) => (

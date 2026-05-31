@@ -6,44 +6,50 @@ const Body = () => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
-  const[width,setWidth]=useState(window.innerWidth);
+ 
+  const[input,setInput]=useState("");
 
   useEffect(() => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    if (selectedCategories.length === 0) {
-      setFilteredProducts(products);
-    } else {
-      const result = products.filter((item) =>
-        selectedCategories.includes(item.category)
-      );
-      setFilteredProducts(result);
-    }
-  }, [selectedCategories, products]);
+ useEffect(() => {
+  let result = products;
+
+  if (input) {
+    result = result.filter((item) =>
+      item.title.toLowerCase().includes(input.toLowerCase())
+    );
+  }
+
+  if (selectedCategories.length > 0) {
+    result = result.filter((item) =>
+      selectedCategories.includes(item.category)
+    );
+  }
+
+  setFilteredProducts(result);
+}, [selectedCategories, products, input]);
 
   const fetchData = async () => {
     const response = await fetch("https://dummyjson.com/products");
     const data = await response.json();
     setProducts(data.products);
+    console.log(products);
     setFilteredProducts(data.products);
   };
 
-  useEffect(()=>{
-    //console.log(window.innerWidth);
-    const handleWidthChange=()=>{
-      setWidth(window.innerWidth);
-    }
-    window.addEventListener("resize",handleWidthChange);
-
-    return ()=>{
-      window.removeEventListener("resize",handleWidthChange);
-    }
-  },[window.innerWidth]);
+  
 
   return (
     <div className="flex">
+      <input
+      type="text"
+      placeholder="Search.."
+      value={input}
+      onChange={(e)=>setInput(e.target.value)}
+      className="absolute left-1/2 -translate-x-1/2 bg-white h-8 w-60 md:w-90 my-4 px-2 outline-none rounded"
+      />
       
       <div className="fixed hidden sm:block top-15 left-0 w-24 md:w-40 bg-gray-200 h-full overflow-y-auto">
         <Categories

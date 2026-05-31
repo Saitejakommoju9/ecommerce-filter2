@@ -43,6 +43,7 @@ const Body = () => {
 
   return (
     <div className="flex">
+      <div className="fixed left-1/2 -translate-x-1/2">
       <input
       type="text"
       placeholder="Search.."
@@ -50,8 +51,9 @@ const Body = () => {
       onChange={(e)=>setInput(e.target.value)}
       className="absolute left-1/2 -translate-x-1/2 bg-white h-8 w-60 md:w-90 my-4 px-2 outline-none rounded"
       />
+      </div>
       
-      <div className="fixed hidden sm:block top-15 left-0 w-24 md:w-40 bg-gray-200 h-full overflow-y-auto">
+      <div className="fixed hidden opacity-70 sm:block top-15 left-0 w-24 md:w-40 bg-gray-200 h-full overflow-y-auto">
         <Categories
           selectedCategories={selectedCategories}
           setSelectedCategories={setSelectedCategories}

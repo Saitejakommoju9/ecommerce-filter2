@@ -33,11 +33,11 @@ const Categories = ({ selectedCategories, setSelectedCategories }) => {
   },[window.innerWidth]);
 
  
-
+final draft
   return (
     width<640 ?( 
     <div className="cursor-pointer ">
-      <button onClick={handleButton} className="text-white opacity-70  bg-black border  rounded-md p-1 font-bold text-lg">Filters⧩</button>
+      <button onClick={handleButton} className="text-white opacity-70  bg-black border  rounded-md p-1 font-bold text-lg hover:opacity-70">Filters {dropDown ?"▲":"▼"}</button>
       {dropDown &&
       <div className="flex flex-col bg-black opacity-60 text-white p-2 rounded-sm -ml-2 font-bold">
         {categories.map((category) => (

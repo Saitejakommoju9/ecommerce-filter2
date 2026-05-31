@@ -33,7 +33,7 @@ const Categories = ({ selectedCategories, setSelectedCategories }) => {
   },[window.innerWidth]);
 
  
-final draft
+
   return (
     width<640 ?( 
     <div className="cursor-pointer ">

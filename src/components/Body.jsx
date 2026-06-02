@@ -58,7 +58,7 @@ const Body = () => {
 
   return (
     
-    <div className="flex bg-gray-100n   min-h-screen">
+    <div className="flex bg-gray-100   min-h-screen">
       <Head/>
       <div className="fixed left-1/2 -translate-x-1/2">
       <input
@@ -108,9 +108,15 @@ const Body = () => {
       </div>
     
 
-      <div className="my-8 h-40  sm:ml-15  md:ml-64 flex mt-25 sm:mt-10 flex-2 flex-wrap md:flex-wrap justify-center  ">
+      <div className="my-8 bg-gray-100 mt-25 sm:mt-10 sm:ml-15 md:ml-64 flex flex-wrap justify-center gap-4">
         {filteredProducts.map((prod) => (
-          <Link to={"/product/"+prod.id}><Products key={prod.id} Pdata={prod} /></Link>
+          <Link
+            key={prod.id}
+            to={"/product/" + prod.id}
+            className="w-[45%] sm:w-52 md:w-56"
+          >
+            <Products Pdata={prod} />
+          </Link>
         ))}
       </div>
     </div>

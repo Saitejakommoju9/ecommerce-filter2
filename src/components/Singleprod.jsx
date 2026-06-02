@@ -22,7 +22,7 @@ function Singleprod(){
     const {title,description,thumbnail,rating,stock,shippingInformation,brand,warrantyInformation
 ,availabilityStatus,minimumOrderQuantity,returnPolicy,price,discountPercentage}=product;
     
-    const totalWithDiscount=(discountPercentage*100)+price;
+    const totalWithDiscount=(price / (1 - discountPercentage / 100)).toFixed(2);
  
     const [likes] = useState(() => Math.floor(Math.random() * 100));
     const [dislikes] = useState(() => Math.floor(Math.random() * 100));
@@ -35,7 +35,7 @@ function Singleprod(){
             <div className="w-full lg:ml-[50%] lg:w-[48%] p-4 lg:border lg:border-gray-200 lg:shadow-sm">
                 <h1 className="py-2">{title}</h1>
                 <p className="text-gray-500 py-2">{description}</p>
-                <div className="py-2 flex text-2xl">
+                <div className="py-2 flex flex-wrap text-2xl">
                     <p className="text-2xl  text-green-300">{discountPercentage}%</p>
                     <p className="px-2  line-through text-gray-500">₹{totalWithDiscount}</p>
                     <p className="px-2">₹{price}</p>
@@ -84,7 +84,7 @@ function Singleprod(){
                 </div>
                 <div className="fixed bottom-0 lg:w-[48%] w-screen bg-white">
                     <div className="lg:mx-25 flex">
-                    <button className="border hover:bg-gray-200 lg:mx-3 mx-4 py-2 w-45  lg:w-45 rounded-xl font-bold border-gray-400">Add to cart</button>
+                    <button className="border hover:bg-gray-200 lg:mx-3  py-2 w-45  lg:w-45 rounded-xl font-bold border-gray-400">Add to cart</button>
                     <button className="border lg:mx-3 hover:opacity-75 mx-4 py-2 w-45 lg:w-45 rounded-xl border-gray-200 font-bold bg-yellow-300">Buy at ₹{price}</button>
                     </div>
                 </div>
